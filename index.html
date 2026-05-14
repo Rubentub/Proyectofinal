@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameServer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<!-- PANTALLA DE CARGA -->
+<div id="loadingScreen" class="loading-screen">
+  <div class="loading-content">
+    <div class="loading-logo">
+      <span class="logo-bracket">[</span>Game<span class="logo-accent">Server</span><span class="logo-bracket">]</span>
+    </div>
+    <p class="loading-sub">Generando página web</p>
+    <div class="loading-bar-wrap">
+      <div class="loading-bar" id="loadingBar"></div>
+    </div>
+    <p class="loading-percent" id="loadingPercent">0%</p>
+    <div class="loading-blocks" id="loadingBlocks"></div>
+  </div>
+</div>
+
+<header class="header" id="header">
+  <div class="logo">
+    <span class="logo-bracket">[</span>Game<span class="logo-accent">Server</span><span class="logo-bracket">]</span>
+  </div>
+  <div class="header-right">
+    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema" onclick="toggleTheme()">🌙</button>
+    <button class="hamburger" id="hamburger" aria-label="Menú">&#9776;</button>
+  </div>
+  <nav id="menu">
+    <a tabindex="0" onclick="showSection('intro')">Introducción</a>
+    <a tabindex="0" onclick="showSection('versions')">Versiones</a>
+    <a tabindex="0" onclick="showSection('mods')">Mods</a>
+    <a tabindex="0" onclick="showSection('server')">Servidor</a>
+    <a tabindex="0" onclick="showSection('chat')">Chat</a>
+    <a tabindex="0" onclick="showSection('contact')">Contacto</a>
+    <a tabindex="0" onclick="showSection('profile')">Perfil</a>
+    <a tabindex="0" class="nav-salir" onclick="volverInicio()">⏻ Salir</a>
+  </nav>
+</header>
+
+<!-- PANTALLA INICIO -->
+<div class="home" id="home">
+  <div class="home-content">
+    <div class="home-logo-big">
+      <span class="logo-bracket">[</span>Game<span class="logo-accent">Server</span><span class="logo-bracket">]</span>
+    </div>
+    <p class="home-sub">Tu servidor de Minecraft, a tu medida</p>
+    <div class="home-buttons">
+      <button class="btn btn-primary" onclick="abrirRegistro()">Registrarse</button>
+      <button class="btn btn-secondary" onclick="abrirLogin()">Iniciar sesión</button>
+      <button class="btn btn-ghost" onclick="entrarVisitante()">Entrar como visitante</button>
+    </div>
+  </div>
+  <div class="particles" id="particles"></div>
+</div>
+
+<!-- REGISTRO -->
+<div class="overlay" id="registro">
+  <div class="modal">
+    <h2 class="modal-title">Registro</h2>
+    <div class="input-group">
+      <input id="regUser" placeholder="Usuario" autocomplete="off">
+      <span class="input-error" id="err-regUser"></span>
+    </div>
+    <div class="input-group">
+      <input id="regEmail" placeholder="Correo electrónico" autocomplete="off">
+      <span class="input-error" id="err-regEmail"></span>
+    </div>
+    <div class="input-group">
+      <input id="regPass" type="password" placeholder="Contraseña (mín. 6 caracteres)">
+      <span class="input-error" id="err-regPass"></span>
+    </div>
+    <div class="input-group">
+      <input id="regPass2" type="password" placeholder="Repetir contraseña">
+      <span class="input-error" id="err-regPass2"></span>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn btn-primary" onclick="registrar()">Registrarse</button>
+      <button class="btn btn-ghost" onclick="volver()">Volver</button>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div class="overlay" id="login">
+  <div class="modal">
+    <h2 class="modal-title">Iniciar sesión</h2>
+    <div class="input-group">
+      <input id="loginUser" placeholder="Usuario" autocomplete="off">
+      <span class="input-error" id="err-loginUser"></span>
+    </div>
+    <div class="input-group">
+      <input id="loginPass" type="password" placeholder="Contraseña">
+      <span class="input-error" id="err-loginPass"></span>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn btn-primary" onclick="loginFn()">Entrar</button>
+      <button class="btn btn-ghost" onclick="volver()">Volver</button>
+    </div>
+  </div>
+</div>
+<!-- INTRO -->
+<div class="section" id="intro">
+  <div class="section-inner">
+    <h1 class="section-title">Introducción</h1>
+
+    <div class="intro-item">
+      <h3>¿Quienes somos?</h3>
+      <p>Buenas bienvenido a Game Server. En esta página podrás crear fácilmente tu propio servidor de Minecraft y poder comparitrlo con quien quieras!!.
+
+Nosotros somos dos compañeros de clase que hemos realizado este proyecto el cual nos ha hecho mucha ilusión y os lo queremos presentar. Cualquier cosa en el apartado de Contacto tendréis nuestro correo a mano y asi nos podreis contactar por cualquier cosa. Y por último y evidentemente, espero que os guste nuestra página web y el funcionamento de ella. </p>
+    </div>
+
+    <div class="intro-item">
+      <h3>Explicación rápida de la web</h3>
+      <p>Como hemos dicho en la parte de quiénes somos, esta página web trata sobre poder crear con facilidad un servidor de Minecraft y poder disfrutar de él. Esto es posible gracias al trabajo que hemos hecho detrás, pero ahora eso no es lo importante; lo importante es saber cómo funciona todo esto.  Primero os tendréis que registrar o iniciar sesión en la web para poder ver los diferentes apartados que ofrecemos. Una vez os hayáis logueado, podréis escoger en el apartado “Versiones” qué versión queréis para vuestro servidor y el tipo, es decir, si será Vanilla o Forge.  Aquí viene la parte importante: antes de escoger los mods, tendréis que ir al apartado “Servidor” y poner el nombre que queréis para el servidor y su versión. Una vez lo creéis, ya podréis ir al apartado “Mods” y escogerlos.  Después iremos al apartado “Mods” (si habéis escogido jugar en Vanilla no hará falta entrar aquí porque, básicamente, no hay mods que escoger) y saldrán las diferentes versiones con sus mods compatibles. Evidentemente, los mods que escojáis tienen que ser compatibles con la versión que habéis seleccionado.  Una vez los escojáis, abajo del todo saldrá un botón llamado “Instalar mods seleccionados”. Ese botón lo que hará será instalarlos inmediatamente en vuestro servidor.  Al arrancar el servidor os saldrá un mensaje abajo a la derecha donde se os indicará la IP y el puerto que tendréis que poner en Minecraft para poder jugar en vuestro servidor. Si no os da tiempo a verlo o apuntarlo, al pulsar “F12” os saldrá el mismo mensaje.  Una vez realizado todo esto, ya podréis controlar vuestro servidor y encenderlo o apagarlo cuando queráis. </p>
+    </div>
+
+    <div class="intro-item">
+      <h3>Pro tips o pequeños consejos</h3>
+      <p>Supongo que habrás visto alguna vez algún video de Minecraft de algunos Youtubers jugando al propio juego y enseñando a jugar a su público. Si asi no es el caso o si pero, prefieres saber más, nosotros te ayudaremos con unos pequeños "pro tips"o consejos en diferentes ambitos <br><br>Esto es importante si estas en una cueva o bajar montañas más rápido y es tener un cubo de agua o para apagar el fuego y convertirlo en obsidiana y poder investigar con más calma y no con el miedo de morir por culpa del fuego. Que la verdad que es bastante fastidioso morir por culpa del fuego, aparte porque como estes en una cueva van a desaparecer tus cosas del inventario y porque se pierden en el fuego y es bastante complicado recuperarlos.<br><br>El siguiente es sobre las coordenadas del Minecraft. Estas són claves para saber que has investigado y no volver a investigar cuevas, aldeas, la aldea de los saqueadores que has investigado o puedes apuntarte esas coordenadas para saquearlas en cualquier momento. Tambien puedes apuntar las coordenadas de donde tienes el portal del Nether y donde tengas tu base.<br><br>IMPORTANTE!!!!!!!! Siempre cuando vayas al Nether llevas almenos una pieza de armadura de oro, ya que asi estaras seguro de que los piglins te ataquen. Tambien asegura llevarte bloques que no sean inflamable para poder hacer puentes por el Nethercomo bloques de piedra, bloques deepslate y bloques de cobblestone.<br><br> Y por último y no menos importante, al estar en una cueva y quieras comenzar a picar, aparte que siempre te lleves mesa de crafteo para poder crearte más picos cuando se te rompa uno y un horno por si toca cocinar comida o obtener hierro, nunca mines recto hacia abajo ya que lo más seguro es que no te encuentres nada. Lo mejor es que vayas cambiando de camino cuando comiences a escuchar lava cerca. </p>
+    </div>
+
+  </div>
+</div>
+<!-- VERSIONES -->
+<div class="section" id="versions">
+  <div class="section-inner">
+    <h1 class="section-title">Versiones</h1>
+    <div class="versions-grid">
+      <div class="version-card selectable-version" data-version="1.21.11">
+        <h3>1.21.11</h3>
+        <p>La versión más reciente de Minecraft Java Edition.</p>
+      </div>
+      <div class="version-card selectable-version" data-version="1.20.1">
+        <h3>1.20.1</h3>
+        <p>Trails & Tales — Arqueología, cerezos y nuevas armaduras decorativas.</p>
+      </div>
+      <div class="version-card selectable-version" data-version="1.19.1">
+        <h3>1.19.1</h3>
+        <p>The Wild Update — El Pantano Profundo, el Guardián y las ranas.</p>
+      </div>
+      <div class="version-card selectable-version" data-version="1.18.1">
+        <h3>1.18.1</h3>
+        <p>Caves & Cliffs II — Cuevas más grandes y montañas épicas.</p>
+      </div>
+      <div class="version-card selectable-version" data-version="1.17.1">
+        <h3>1.17.1</h3>
+        <p>Caves & Cliffs I — Nuevos bloques, mobs y la primera parte de las cuevas.</p>
+      </div>
+    </div>
+
+    <!-- Campo oculto donde guardamos la versión seleccionada -->
+    <input type="hidden" id="serverVersionHidden">
+
+    <h1 class="section-title" style="margin-top: 2.5rem;">Tipos de Servidor</h1>
+    <div class="versions-grid">
+      <div class="version-card selectable" data-type="vanilla">
+        <h3>Vanilla</h3>
+        <p>Minecraft puro sin modificaciones.</p>
+      </div>
+      <div class="version-card selectable" data-type="forge">
+        <h3>Forge</h3>
+        <p>Compatible con miles de mods.</p>
+      </div>
+    </div>
+    <input type="hidden" id="serverType">
+  </div>
+</div>
+
+<!-- MODS -->
+<div class="section" id="mods">
+  <div class="section-inner">
+    <h1 class="section-title">Mods por versión</h1>
+
+    <!-- 1.21.11 -->
+    <div class="mods-category">
+      <h2 class="mods-category-title">🟢 Minecraft 1.21.11</h2>
+      <div class="mods-grid">
+        <div class="mod-card selectable-mod" data-mod="waystones">
+          <span class="mod-badge">Teleport</span>
+          <h3>Waystones</h3>
+          <p>Permite viajar rápidamente entre waystones.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="journeymap">
+          <span class="mod-badge">Mapa</span>
+          <h3>JourneyMap</h3>
+          <p>Mapa en tiempo real con waypoints y minimapa.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="balm-forge">
+          <span class="mod-badge">Librería</span>
+          <h3>Balm Forge</h3>
+          <p>Librería base requerida por varios mods populares.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="mousetweaks">
+          <span class="mod-badge">Inventario</span>
+          <h3>Mouse Tweaks</h3>
+          <p>Mejoras rápidas para mover objetos en inventarios.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="carryon">
+          <span class="mod-badge">Utilidad</span>
+          <h3>Carry On</h3>
+          <p>Permite transportar cofres, mobs y bloques.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="backpacks">
+          <span class="mod-badge">Storage</span>
+          <h3>Backpacks</h3>
+          <p>Mochilas portátiles para guardar objetos.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1.20.1 -->
+    <div class="mods-category">
+      <h2 class="mods-category-title">🟡 Minecraft 1.20.1</h2>
+      <div class="mods-grid">
+        <div class="mod-card selectable-mod" data-mod="waystones">
+          <span class="mod-badge">Teleport</span>
+          <h3>Waystones</h3>
+          <p>Permite viajar rápidamente entre waystones.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="journeymap">
+          <span class="mod-badge">Mapa</span>
+          <h3>JourneyMap</h3>
+          <p>Mapa en tiempo real con waypoints y minimapa.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="ironchests">
+          <span class="mod-badge">Storage</span>
+          <h3>Iron Chests</h3>
+          <p>Cofres mejorados con mayor capacidad de almacenamiento.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="mousetweaks">
+          <span class="mod-badge">Inventario</span>
+          <h3>Mouse Tweaks</h3>
+          <p>Mejoras rápidas para mover objetos en inventarios.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="appleskin">
+          <span class="mod-badge">HUD</span>
+          <h3>AppleSkin</h3>
+          <p>Muestra saturación y hambre de forma avanzada.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="balm-forge">
+          <span class="mod-badge">Librería</span>
+          <h3>Balm Forge</h3>
+          <p>Librería base requerida por varios mods populares.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1.19.1 -->
+    <div class="mods-category">
+      <h2 class="mods-category-title">🟠 Minecraft 1.19.1</h2>
+      <div class="mods-grid">
+        <div class="mod-card selectable-mod" data-mod="waystones">
+          <span class="mod-badge">Teleport</span>
+          <h3>Waystones</h3>
+          <p>Permite viajar rápidamente entre waystones.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="journeymap">
+          <span class="mod-badge">Mapa</span>
+          <h3>JourneyMap</h3>
+          <p>Mapa en tiempo real con waypoints y minimapa.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="ironchests">
+          <span class="mod-badge">Storage</span>
+          <h3>Iron Chests</h3>
+          <p>Cofres mejorados con mayor capacidad de almacenamiento.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="mousetweaks">
+          <span class="mod-badge">Inventario</span>
+          <h3>Mouse Tweaks</h3>
+          <p>Mejoras rápidas para mover objetos en inventarios.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="appleskin">
+          <span class="mod-badge">HUD</span>
+          <h3>AppleSkin</h3>
+          <p>Muestra saturación y hambre de forma avanzada.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="balm-forge">
+          <span class="mod-badge">Librería</span>
+          <h3>Balm Forge</h3>
+          <p>Librería base requerida por varios mods populares.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1.18.1 -->
+    <div class="mods-category">
+      <h2 class="mods-category-title">🔵 Minecraft 1.18.1</h2>
+      <div class="mods-grid">
+        <div class="mod-card selectable-mod" data-mod="appleskin">
+          <span class="mod-badge">HUD</span>
+          <h3>AppleSkin</h3>
+          <p>Muestra saturación y hambre de forma avanzada.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="balm">
+          <span class="mod-badge">Librería</span>
+          <h3>Balm</h3>
+          <p>Librería base requerida por varios mods populares.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="carryon">
+          <span class="mod-badge">Utilidad</span>
+          <h3>Carry On</h3>
+          <p>Permite transportar cofres, mobs y bloques.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="journeymap">
+          <span class="mod-badge">Mapa</span>
+          <h3>JourneyMap</h3>
+          <p>Mapa en tiempo real con waypoints y minimapa.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="mousetweaks">
+          <span class="mod-badge">Inventario</span>
+          <h3>Mouse Tweaks</h3>
+          <p>Mejoras rápidas para mover objetos en inventarios.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="waystones">
+          <span class="mod-badge">Teleport</span>
+          <h3>Waystones</h3>
+          <p>Permite viajar rápidamente entre waystones.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1.17.1 -->
+    <div class="mods-category">
+      <h2 class="mods-category-title">🟣 Minecraft 1.17.1</h2>
+      <div class="mods-grid">
+        <div class="mod-card selectable-mod" data-mod="appleskin">
+          <span class="mod-badge">HUD</span>
+          <h3>AppleSkin</h3>
+          <p>Muestra saturación y hambre de forma avanzada.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="balm">
+          <span class="mod-badge">Librería</span>
+          <h3>Balm</h3>
+          <p>Librería base requerida por varios mods populares.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="ironchests">
+          <span class="mod-badge">Storage</span>
+          <h3>Iron Chests</h3>
+          <p>Cofres mejorados con mayor capacidad de almacenamiento.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="journeymap">
+          <span class="mod-badge">Mapa</span>
+          <h3>JourneyMap</h3>
+          <p>Mapa en tiempo real con waypoints y minimapa.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="mousetweaks">
+          <span class="mod-badge">Inventario</span>
+          <h3>Mouse Tweaks</h3>
+          <p>Mejoras rápidas para mover objetos en inventarios.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+        <div class="mod-card selectable-mod" data-mod="waystones">
+          <span class="mod-badge">Teleport</span>
+          <h3>Waystones</h3>
+          <p>Permite viajar rápidamente entre waystones.</p>
+          <span class="mod-check">✔ Disponible</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCIONES -->
+    <div class="mods-actions">
+      <button class="btn btn-primary" onclick="instalarMods()">
+        ⬇ Instalar mods seleccionados
+      </button>
+      <span id="modsStatus" class="mods-status"></span>
+    </div>
+
+  </div>
+</div>
+<!-- SERVIDOR -->
+<div class="section" id="server">
+  <div class="section-inner">
+    <h1 class="section-title">Panel Servidor</h1>
+    <div class="server-layout">
+
+      <!-- PANEL: Cargar servidor existente (NUEVO) -->
+      <div class="server-panel">
+        <h3 class="panel-label">📂 Cargar servidor existente</h3>
+        <select id="servidorExistente" class="select-styled">
+          <option value="">-- Selecciona servidor --</option>
+        </select>
+        <button class="btn btn-secondary" onclick="cargarServidor()">Cargar</button>
+      </div>
+
+      <!-- PANEL: Configuración -->
+      <div class="server-panel">
+        <h3 class="panel-label">⚙️ Configuración</h3>
+        <div class="input-group">
+          <input id="serverName" placeholder="Nombre del servidor">
+        </div>
+        <select id="serverVersion" class="select-styled">
+          <option value="1.21.11">Minecraft 1.21.11</option>
+          <option value="1.20.1">Minecraft 1.20.1</option>
+          <option value="1.19.1">Minecraft 1.19.1</option>
+          <option value="1.18.1">Minecraft 1.18.1</option>
+          <option value="1.17.1">Minecraft 1.17.1</option>
+        </select>
+        <button class="btn btn-primary" onclick="crearServidor()">Crear servidor</button>
+      </div>
+
+      <!-- PANEL: Estado -->
+      <div class="server-panel">
+        <h3 class="panel-label">🖥️ Estado</h3>
+        <div class="status-badge" id="statusBadge">
+          <span class="status-dot" id="statusDot"></span>
+          <span id="estadoServidor">Apagado</span>
+        </div>
+        <div class="timer-display" id="timerDisplay">00:00:00</div>
+        <div class="server-btns">
+          <button class="btn btn-green" onclick="arrancarServidor(nombreServidor)">▶ Arrancar</button>
+          <button class="btn btn-red" onclick="pararServidor()">■ Parar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHAT -->
+<div class="section" id="chat">
+  <div class="section-inner">
+    <h1 class="section-title">💬 Chat del Servidor</h1>
+    <div class="chat-layout">
+      <div class="chat-box" id="chatBox"></div>
+      <div class="chat-input-row">
+        <input id="chatInput" placeholder="Escribe un mensaje..." maxlength="200" onkeydown="if(event.key==='Enter') enviarMensaje()">
+        <button class="btn btn-primary chat-send-btn" onclick="enviarMensaje()">Enviar</button>
+      </div>
+      <p class="chat-hint">Los bots del servidor responden automáticamente cada pocos segundos 🤖</p>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACTO -->
+<div class="section" id="contact">
+  <div class="section-inner">
+    <h1 class="section-title">Contacto</h1>
+    <div class="contact-wrap">
+      <div class="intro-item">
+        <p>¿Tienes alguna sugerencia para mejorar el proyecto, has encontrado un error o simplemente quieres decirnos algo? ¡Estaremos encantados de leerte!</p>
+        <br>
+        <p>Escríbenos a: <a href="mailto:gserveroficial@gmail.com" style="color: #4ade80;">gserveroficial@gmail.com</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- PERFIL -->
+<div class="section" id="profile">
+  <div class="section-inner">
+    <h1 class="section-title">Perfil</h1>
+    <div class="profile-card">
+      <div class="profile-img-wrap">
+        <img id="profileImg" class="profile-img" src="" alt="Foto de perfil del usuario">
+        <label class="profile-img-edit" title="Cambiar foto">
+          ✏️
+          <input type="file" accept="image/*" onchange="subirImagen(event)">
+        </label>
+      </div>
+      <div class="profile-info">
+        <p id="profileUser"></p>
+        <p id="profileEmail"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
