@@ -1,0 +1,40 @@
+- hosts: localhost
+  become: yes
+  vars:
+    base_path: "/mnt/minecraft/minecraft"
+
+  tasks:
+
+    - name: Crear carpeta del servidor
+      file:
+        path: "{{ base_path }}/{{ nombre }}"
+        state: directory
+
+    - name: Crear carpeta de datos
+      file:
+        path: "{{ base_path }}/{{ nombre }}/data"
+        state: directory
+
+    - name: Crear docker-compose.yml
+      copy:
+        dest: "{{ base_path }}/{{ nombre }}/docker-compose.yml"
+        content: |
+          version: "3"
+          services:
+            {{ nombre }}:
+              image: itzg/minecraft-server
+              container_name: {{ nombre }}
+              ports:
+                - "{{ puerto }}:25565"
+              environment:
+                EULA: "TRUE"
+                VERSION: "{{ version }}"
+                TYPE: "{{ tipo }}"
+                ONLINE_MODE: "FALSE"
+              volumes:
+                - "{{ base_path }}/{{ nombre }}/data:/data"
+
+    - name: Iniciar servidor
+      command: docker compose up -d
+      args:
+        chdir: "{{ base_path }}/{{ nombre }}"
