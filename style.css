@@ -139,7 +139,7 @@ body {
   font-size: 16px;
   color: var(--text);
   background-color: var(--bg);
-  background-image: url("/foto/fondo.png");
+  background-image: url("fondo.png");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
