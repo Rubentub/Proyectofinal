@@ -11,6 +11,7 @@ let timerInterval = null;
 let timerSegundos = 0;
 let chatBotInterval = null;
 let nombreServidor = "";
+let direccionServidor = "";
 
 
 /* =====================
@@ -390,7 +391,7 @@ function volverInicio() {
    CARGAR SERVIDORES EXISTENTES
 ===================== */
 function cargarServidoresExistentes() {
-  fetch("http://192.168.15.124/orden.php", {
+  fetch("http://192.168.15.152/orden.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ accion: "listarServidores", usuario: usuario?.user })
@@ -452,7 +453,7 @@ function cargarServidor() {
    CARGAR MODS INSTALADOS
 ===================== */
 function cargarModsInstalados(nombre) {
-  fetch("http://192.168.15.124/orden.php", {
+  fetch("http://192.168.15.152/orden.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -507,7 +508,7 @@ function crearServidor() {
     return;
   }
 
-  fetch("http://192.168.15.124/orden.php", {
+  fetch("http://192.168.15.152/orden.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -523,6 +524,11 @@ function crearServidor() {
     console.log(d);
     if (d.status === "ok") {
       nombreServidor = nombre;
+      direccionServidor = d.conexion;
+	document.getElementById("nombreServidorInfo").textContent = nombre;
+ 	document.getElementById("direccionServidor").textContent = d.conexion;
+  	document.getElementById("conexionServidor").style.display = "block";
+
       mostrarToast(
         `Servidor "${nombre}" (${version}, ${tipo}) creado\nConéctate con: ${d.conexion}`,
         'success'
@@ -541,7 +547,7 @@ function crearServidor() {
    PARAR SERVIDOR
 ===================== */
 function pararServidor() {
-  fetch("http://192.168.15.124/orden.php", {
+  fetch("http://192.168.15.152/orden.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -558,6 +564,7 @@ function pararServidor() {
       clearInterval(timerInterval);
       timerInterval = null;
       timerSegundos = 0;
+      document.getElementById("conexionServidor").style.display = "none";
 
       const estadoEl = document.getElementById('estadoServidor');
       const dotEl = document.getElementById('statusDot');
@@ -583,7 +590,7 @@ function pararServidor() {
    ARRANCAR SERVIDOR
 ===================== */
 function arrancarServidor(nombre) {
-  fetch("http://192.168.15.124/orden.php", {
+  fetch("http://192.168.15.152/orden.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -599,7 +606,17 @@ function arrancarServidor(nombre) {
       servidorActivo = true;
       document.getElementById('estadoServidor').textContent = 'Encendido';
       document.getElementById('statusDot').classList.add('on');
-      mostrarToast("Servidor arrancado correctamente", "success");
+      document.getElementById("conexionServidor").style.display = "block";
+
+      document.getElementById("nombreServidorInfo").textContent = nombreServidor;
+
+document.getElementById("direccionServidor").textContent =
+    direccionServidor;
+
+	mostrarToast(
+  `Servidor arrancado\n${direccionServidor}`,
+  "success"
+	);
 
       timerSegundos = 0;
       clearInterval(timerInterval);
@@ -626,12 +643,11 @@ function formatTimer(s) {
 }
 
 /* =====================
-   INSTALAR MODS  ← NUEVO
+   INSTALAR MODS  
 ===================== */
 async function instalarMods() {
   const tarjetasSeleccionadas = [...document.querySelectorAll('.selectable-mod.selected')];
 
-  // Validar que no mezcla versiones
   const categorias = new Set(
     tarjetasSeleccionadas.map(card => card.closest('.mods-category')?.querySelector('h2')?.textContent)
   );
@@ -640,7 +656,6 @@ async function instalarMods() {
     return;
   }
 
-  // Ahora sí extraemos los data-mod
   const seleccionados = tarjetasSeleccionadas.map(card => card.dataset.mod);
 
   if (seleccionados.length === 0) {
@@ -656,7 +671,7 @@ async function instalarMods() {
   if (statusEl) statusEl.textContent = '⏳ Instalando...';
 
   try {
-    const respuesta = await fetch("http://192.168.15.124/orden.php", {
+    const respuesta = await fetch("http://192.168.15.152/orden.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -679,40 +694,6 @@ async function instalarMods() {
     mostrarToast('Error de conexión con el backend', 'error');
     if (statusEl) statusEl.textContent = '❌ Error de conexión';
   }
-}
-/* =====================
-   CONTACTO
-===================== */
-function enviarContacto() {
-  clearErrors();
-  const nombre = document.getElementById('contactNombre').value.trim();
-  const email = document.getElementById('contactEmail').value.trim();
-  const msg = document.getElementById('contactMsg').value.trim();
-
-  let valid = true;
-  if (!nombre) { showError('contactNombre', 'err-contactNombre', 'Introduce tu nombre'); valid = false; }
-  if (!validarEmail(email)) { showError('contactEmail', 'err-contactEmail', 'Correo no válido'); valid = false; }
-  if (msg.length < 10) { showError('contactMsg', 'err-contactMsg', 'El mensaje debe tener al menos 10 caracteres'); valid = false; }
-  if (!valid) return;
-
-  fetch("contacto.php", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: `nombre=${encodeURIComponent(nombre)}&email=${encodeURIComponent(email)}&mensaje=${encodeURIComponent(msg)}`
-  })
-  .then(res => res.text())
-  .then(data => {
-    const success = document.getElementById('contactSuccess');
-    if (data === "OK") {
-      success.textContent = '✅ Mensaje enviado correctamente. ¡Te responderemos pronto!';
-      document.getElementById('contactNombre').value = '';
-      document.getElementById('contactEmail').value = '';
-      document.getElementById('contactMsg').value = '';
-    } else {
-      success.textContent = '❌ Error al enviar el mensaje. Inténtalo más tarde.';
-    }
-    setTimeout(() => { success.textContent = ''; }, 4000);
-  });
 }
 
 /* =====================
