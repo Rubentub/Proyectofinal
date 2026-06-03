@@ -5,11 +5,13 @@ header("Content-Type: application/json");
 
 include("conexion.php");
 
-// Recibir datos JSON desde fetch()
 $data = json_decode(file_get_contents("php://input"), true);
 
 if (!$data) {
-    echo json_encode(["status" => "error", "msg" => "No se recibieron datos"]);
+    echo json_encode([
+        "status" => "error",
+        "msg" => "No se recibieron datos"
+    ]);
     exit;
 }
 
@@ -17,23 +19,35 @@ $nombre = $data["user"] ?? "";
 $correo = $data["email"] ?? "";
 $pass   = $data["pass"] ?? "";
 
-// VALIDACIONES BÁSICAS
-if (strlen($nombre) < 3 || strlen($pass) < 6 || !filter_var($correo, FILTER_VALIDATE_EMAIL)) {
-    echo json_encode(["status" => "error", "msg" => "Datos inválidos"]);
+if (
+    strlen($nombre) < 3 ||
+    strlen($pass) < 6 ||
+    !filter_var($correo, FILTER_VALIDATE_EMAIL)
+) {
+    echo json_encode([
+        "status" => "error",
+        "msg" => "Datos inválidos"
+    ]);
     exit;
 }
 
-// OJO: la columna REAL es `contraseña` con Ñ
+$passHash = password_hash($pass, PASSWORD_DEFAULT);
+
 $sql = "INSERT INTO usuarios (nombre, correo, `contraseña`)
         VALUES (?, ?, ?)";
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sss", $nombre, $correo, $pass);
+$stmt->bind_param("sss", $nombre, $correo, $passHash);
 
 if ($stmt->execute()) {
-    echo json_encode(["status" => "ok"]);
+    echo json_encode([
+        "status" => "ok"
+    ]);
 } else {
-    echo json_encode(["status" => "error", "msg" => $stmt->error]);
+    echo json_encode([
+        "status" => "error",
+        "msg" => $stmt->error
+    ]);
 }
 
 $stmt->close();
