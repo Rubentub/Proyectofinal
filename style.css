@@ -139,7 +139,7 @@ body {
   font-size: 16px;
   color: var(--text);
   background-color: var(--bg);
-  background-image: url("fondo.png");
+  background-image: url("/foto/fondo.png");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -989,4 +989,21 @@ textarea { resize: vertical; min-height: 100px; }
 .selectable.selected h3,
 .selectable.selected p {
   color: #1a1a1a;
+}
+.server-connection {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  background: rgba(22,163,74,.15);
+  border: 1px solid rgba(74,222,128,.4);
+  text-align: left;
+}
+
+.server-connection p {
+  margin: 5px 0;
+  word-break: break-all;
+}
+
+.server-connection strong {
+  color: #4ade80;
 }
