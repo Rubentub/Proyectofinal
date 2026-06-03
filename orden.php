@@ -52,13 +52,13 @@ if ($accion === "crearServidor") {
     }
     $stmt->close();
 
-    $cmd = "ansible-playbook /var/www/html/crear_servidor.yml --extra-vars 'nombre=$nombre version=$version tipo=$tipo puerto=$puerto' 2>&1";
+    $cmd = "ansible-playbook /var/www/html/crear_servidor.yml --extra-vars 'nombre=$nombre version=$version tipo=$tipo puerto=$puerto' -b -K  2>&1";
     shell_exec($cmd);
 
     echo json_encode([
         "status"   => "ok",
         "msg"      => "Servidor creado correctamente",
-        "conexion" => "192.168.15.124:$puerto",
+        "conexion" => "192.168.15.152:$puerto",
         "puerto"   => $puerto
     ]);
     exit;
@@ -217,3 +217,4 @@ if ($accion === "obtenerMods") {
 
 $conn->close();
 ?>
+
