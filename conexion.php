@@ -1,5 +1,5 @@
 <?php
-$host = "192.168.15.123";
+$host = "192.168.15.162";
 $usuario = "gsuser";
 $contraseña = "1234Gs@";
 $base_datos = "gsbase";
