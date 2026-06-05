@@ -1,1 +1,141 @@
-fgfgfgfgfgfg
+-- MySQL dump 10.13  Distrib 8.0.45, for Linux (x86_64)
+--
+-- Host: localhost    Database: gsbase
+-- ------------------------------------------------------
+-- Server version	8.0.45-0ubuntu0.24.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `incidencias`
+--
+
+DROP TABLE IF EXISTS `incidencias`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `incidencias` (
+  `id_ticket` int NOT NULL AUTO_INCREMENT,
+  `id_usuarios` int NOT NULL,
+  `problema` text NOT NULL,
+  `fecha_creacion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_ticket`),
+  KEY `id_usuarios` (`id_usuarios`),
+  CONSTRAINT `incidencias_ibfk_1` FOREIGN KEY (`id_usuarios`) REFERENCES `usuarios` (`id_usuarios`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `incidencias`
+--
+
+LOCK TABLES `incidencias` WRITE;
+/*!40000 ALTER TABLE `incidencias` DISABLE KEYS */;
+/*!40000 ALTER TABLE `incidencias` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `respuestas`
+--
+
+DROP TABLE IF EXISTS `respuestas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `respuestas` (
+  `id_respuesta` int NOT NULL AUTO_INCREMENT,
+  `id_ticket` int NOT NULL,
+  `fecha_respuesta` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_respuesta`),
+  KEY `id_ticket` (`id_ticket`),
+  CONSTRAINT `respuestas_ibfk_1` FOREIGN KEY (`id_ticket`) REFERENCES `incidencias` (`id_ticket`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `respuestas`
+--
+
+LOCK TABLES `respuestas` WRITE;
+/*!40000 ALTER TABLE `respuestas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `respuestas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `servidores`
+--
+
+DROP TABLE IF EXISTS `servidores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `servidores` (
+  `id_servidor` int NOT NULL AUTO_INCREMENT,
+  `id_usuarios` int NOT NULL,
+  `nombre_servidor` varchar(50) NOT NULL,
+  `fecha_creacion_servidor` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `version` varchar(20) NOT NULL,
+  `tipo_version` varchar(50) NOT NULL,
+  `nombre_mod` varchar(150) DEFAULT NULL,
+  `num_mods` int DEFAULT '0',
+  `logs` text,
+  PRIMARY KEY (`id_servidor`),
+  KEY `id_usuarios` (`id_usuarios`),
+  CONSTRAINT `servidores_ibfk_1` FOREIGN KEY (`id_usuarios`) REFERENCES `usuarios` (`id_usuarios`)
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `servidores`
+--
+
+LOCK TABLES `servidores` WRITE;
+/*!40000 ALTER TABLE `servidores` DISABLE KEYS */;
+INSERT INTO `servidores` VALUES (1,10,'holaquetal','2026-05-08 14:24:19','1.20.1','vanilla','journeymap,waystones,carryon',3,NULL),(2,10,'modsprueba','2026-05-11 15:34:32','1.21.11','forge',NULL,0,NULL),(3,10,'simods','2026-05-11 15:36:48','1.20.1','forge','waystones,journeymap,ironchests,mousetweaks,appleskin,balm-forge',6,NULL),(4,12,'nomods','2026-05-11 15:42:37','1.21.11','vanilla',NULL,0,NULL),(5,10,'modstest','2026-05-11 15:52:24','1.20.1','forge','carryon,mouseTweaks',2,NULL),(6,10,'modstest','2026-05-11 15:53:43','1.20.1','forge',NULL,0,NULL),(7,10,'holabuenas2','2026-05-12 16:49:12','1.19.1','vanilla',NULL,0,NULL),(8,10,'holabuenas2','2026-05-12 16:51:17','1.19.1','vanilla',NULL,0,NULL),(9,10,'test.11','2026-05-13 16:07:11','1.21.11','vanilla',NULL,0,NULL),(10,10,'test22','2026-05-13 16:29:44','1.21.11','vanilla',NULL,0,NULL),(11,14,'sd','2026-05-13 16:40:40','1.20.1','vanilla',NULL,0,NULL),(12,14,'hola','2026-05-13 16:43:04','1.21.11','vanilla',NULL,0,NULL),(13,10,'hola','2026-05-15 18:04:12','1.21.11','vanilla',NULL,0,NULL),(14,10,'pruebalunes18','2026-05-18 15:52:12','1.20.1','vanilla',NULL,0,NULL),(15,16,'test','2026-05-22 17:02:36','1.20.1','vanilla','journeymap',1,NULL),(16,16,'guay','2026-05-22 17:06:50','1.20.1','forge',NULL,0,NULL),(17,16,'tusmuertosmods','2026-06-01 14:37:30','1.20.1','forge','journeymap,appleskin',2,NULL),(18,16,'primo','2026-06-01 14:45:39','1.20.1','vanilla',NULL,0,NULL),(19,10,'test4','2026-06-01 14:54:49','1.20.1','vanilla',NULL,0,NULL),(20,16,'primo','2026-06-01 15:10:11','1.20.1','vanilla',NULL,0,NULL),(21,16,'primo','2026-06-01 15:27:01','1.20.1','vanilla',NULL,0,NULL),(22,16,'hola','2026-06-01 15:30:18','1.21.11','vanilla',NULL,0,NULL),(23,10,'ha','2026-06-01 15:31:33','1.20.1','vanilla',NULL,0,NULL),(24,16,'buenas','2026-06-01 15:33:12','1.20.1','vanilla',NULL,0,NULL),(25,16,'buenas','2026-06-01 15:41:07','1.20.1','vanilla',NULL,0,NULL),(26,16,'buenas','2026-06-01 15:41:37','1.20.1','vanilla',NULL,0,NULL),(27,16,'holaprueba','2026-06-01 15:54:09','1.21.11','vanilla',NULL,0,NULL),(28,10,'hola','2026-06-01 16:09:33','1.20.1','vanilla',NULL,0,NULL),(29,17,'hola1214','2026-06-01 16:16:12','1.20.1','forge','journeymap,appleskin',2,NULL),(30,17,'hola1214','2026-06-01 16:16:47','1.20.1','forge',NULL,0,NULL),(31,17,'po','2026-06-01 16:17:58','1.20.1','forge','journeymap',1,NULL),(32,10,'mods2','2026-06-01 16:21:19','1.20.1','forge','journeymap',1,NULL),(33,16,'po','2026-06-01 16:22:55','1.20.1','vanilla',NULL,0,NULL),(34,17,'fdfdfdfdfd','2026-06-01 16:23:42','1.20.1','vanilla',NULL,0,NULL),(35,10,'va','2026-06-01 16:24:44','1.20.1','vanilla',NULL,0,NULL),(38,16,'porfin1','2026-06-01 16:33:20','1.20.1','forge','journeymap',1,NULL);
+/*!40000 ALTER TABLE `servidores` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuarios`
+--
+
+DROP TABLE IF EXISTS `usuarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuarios` (
+  `id_usuarios` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL,
+  `correo` varchar(150) NOT NULL,
+  `contraseña` varchar(255) NOT NULL,
+  `fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id_usuarios`),
+  UNIQUE KEY `correo` (`correo`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuarios`
+--
+
+LOCK TABLES `usuarios` WRITE;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (10,'user12','user123@gmail.com','123456','2026-04-29 14:10:48'),(12,'holabuenas','holabuenas@gmail.com','147852','2026-05-11 15:42:01'),(14,'bienvenido','bienvenido@gmail.com','147852','2026-05-13 16:39:55'),(16,'user1','user1@gmail.com','admin123','2026-05-22 17:00:58'),(17,'hola','hola@gmail.com','123456','2026-06-01 16:14:22'),(18,'holare','holarre@gmail.com','$2y$10$WsrPn3tEJ2DCYjVER7UOkOuW8suUZ8AnQUX4vYgYaQVfWJi3tM8c6','2026-06-03 14:48:01'),(19,'usuario1','usuario1@gmail.com','$2y$10$Kf0lQAZx3qgFRrl0/3k3cuxEyInAgVmmY.EPX9BJmlGotozfIrAt2','2026-06-03 15:35:04');
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2026-06-03 19:26:12
