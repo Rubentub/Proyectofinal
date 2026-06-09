@@ -84,6 +84,27 @@ css/style.css
 script/script.js
 ```
 
+- **Paso 7: Configuración de Nginx**
+Se genera automáticamente el virtual host con las funciones principales.
+```bash
+server {
+    listen 80;
+    server_name localhost;
+}
+```
+Donde estaran todos los archivos del proyecto y donde se econtrara la web será en esta ruta.
+```bash
+root /var/www/minecraft;
+```
+Php con el siguiente comando ```bash location ~ \.php$ ``` permitira ejecutar los scripts php mediante PHP-FPM.
+
+Por seguridad las contraseñas seran hasheadas para la privacidad del usuario con los siguientes comandos:
+Para registrar.php```bash
+$passwordHash = password_hash($password, PASSWORD_DEFAULT);
+```
+Para login.php```bash
+password_verify($passwordIntroducida, $hashGuardado)
+```
 
 - **Paso 8: Instalar Docker**
 Instala Docker Engine y Docker Compose, necesarios para crear y gestionar los contenedores de Minecraft. Cada servidor de Minecraft que un usuario crea desde la web se ejecuta en un contenedor Docker independiente usando la imagen itzg/minecraft-server, lo que permite que varios servidores funcionen al mismo tiempo en la misma máquina sin interferir entre ellos.
