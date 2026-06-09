@@ -122,3 +122,7 @@ Una vez que el script haya terminado, abre el navegador y escribe la IP de tu m�
 ```bash
   http://localhost
   ```
+
+Si falla el tema de crear servidores a partir de la web, hemos encontrado una solución a este problema. Habrá que utilizar unos comandos depende si quieres añadir mods o no, que ahora explicaremos en un momento.
+- **Primero vamos a explicar sin mods**
+Para
