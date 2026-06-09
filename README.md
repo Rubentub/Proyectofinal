@@ -173,6 +173,7 @@ Si al crear servidor da fallos tendreis la opción de hacerlo por comandos, pero
 /var/www/minecraft
 ```
 Creais una carpeta llamada **mods** y pasar los mods a esta carpeta con el siguiente comando:
+ejemplo
 ```bash
 cp mod1.jar /var/www/minecraft/mods/
 ```
