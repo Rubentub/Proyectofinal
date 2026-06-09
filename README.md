@@ -18,15 +18,15 @@ Primero de todo, brevemente os vamos a explicar como descargarse el script y com
 - Os pasaremos un correo con el script de despliegue, una vez os llegue al correo nuestro mensaje os lo tendreis que descargar.
 - Una vez os habeis descargardo este script, iremos al terminal y buscaremos el archivo con el siguiente comando:
     ```bash
-  ls script.sh
+  ls install.sh
   ```
 - Despues de haber encontrado el script, habrá que darle permisos de ejecución con el siguiente comando:
   ```bash
-  chmod +x script.sh
+  chmod +x install.sh
   ```
 - Y por ultimo para poder ejecutarlo lo haremos de la siguiente manera:
   ```bash
-  sudo ./script.sh
+  sudo ./install.sh
   ```
 
 **Que hace cada apartado del script**
