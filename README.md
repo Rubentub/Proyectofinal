@@ -28,3 +28,18 @@ Primero de todo, brevemente os vamos a explicar como descargarse el script y com
   ```bash
   sudo ./script.sh
   ```
+
+**Que hace cada apartado del script**
+Ahora vamos a explicar lo que hace cada apartado del script uno a uno:
+- **Paso 1: Actualizar el sistema**
+En este paso lo que hace es actualizar los repositorios del sistema y los paquetes instalados.
+
+- **Paso 2: Instalar Nginx**
+Este paso se encarga del servicio web Nginx, que es el encargado de enseñar la página principal.
+
+- **Paso 3: Instalar PHP**
+Se instala la versión PHP8.2 junto a los módulos necesarios para que funcione correctamente.
+
+- **Paso 4: Instalar y configurar MySQL**
+Primero de todo se encarga de instalar MySQL, despues se encarga de crear la base de datos **gsbase** con su usuario **gsuser** y con la contraseña para poder acceder a la base de datos con el usuario (la contraseña se enviara por correo), y por ultimo le dara permisos de asginación.
+
