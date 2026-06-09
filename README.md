@@ -135,6 +135,7 @@ docker run -d \
 -e EULA=TRUE \
 -e TYPE=VANILLA \
 -e VERSION=x.xx.x \
+-e ONLINE_MODE=FALSE \
 itzg/minecraft-server
 ```
 Las x son los datos que tienes que poner tu a tu gusto, tanto el nombre del servidor que le quieras poner como la versión del servidor. Otra cosa muy importante es que si ya tienes un servidor creado con ```bash -p 25565:25565 ``` no podrás crear otro servidor con el mismo puerto, para crear otro servidor tendrás que cambiar el puerto de la izquierda de la siguiene manera.
@@ -163,6 +164,7 @@ docker run -d \
 -e EULA=TRUE \
 -e TYPE=FORGE \
 -e VERSION=x.xx.x \
+-e ONLINE_MODE=FALSE \
 -v /var/www/minecraft:/data \
 itzg/minecraft-server
 ```
@@ -187,6 +189,7 @@ docker run -d \
 -e EULA=TRUE \
 -e TYPE=FORGE \
 -e VERSION=x.xx.x \
+-e ONLINE_MODE=FALSE \
 -v /var/www/minecraft:/data \
 itzg/minecraft-server
 ```
