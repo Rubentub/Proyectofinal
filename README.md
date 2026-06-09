@@ -13,3 +13,6 @@ Este script lo que hace exactamente es automatizar completamente el despliegue d
 - **Importara las tablas de la base de datos**
 - **Configurara la conexión PHP-MySQL**
 - **Por ultimo configurara Nginx para poder acceder a la página principal**
+
+Primero de todo, brevemente os vamos a explicar como descargarse el script y como ejecutarlo:
+- Os pasaremos un correo con el script de despliegue, una vez os llegue al correo nuestro mensaje, tendreis que 
