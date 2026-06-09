@@ -148,8 +148,10 @@ Exactamente te muestra mensajes de incio del servidor, te muestra los errores de
 Y por ultimo para borrar cualquier servidor se utizara ```bash docker rm -f nombredelservidor```.
 
 - **Con mods**
-Primero de todo tenemos que crear la carpeta mods, si no esta creada ya desde el script, una vez se ha creado meteremos los mods que meteremos en el servidor con el siguiente comando ```bash cp mod1.jar /var/www/minecraft/mods/````.
-
+Primero de todo tenemos que crear la carpeta mods, si no esta creada ya desde el script, una vez se ha creado meteremos los mods que meteremos en el servidor con el siguiente comando:
+```bash
+cp mod1.jar /var/www/minecraft/mods/
+````
 Una vez hemos pasado los mods que queremos a la carpeta, tocará arrancar el servidor con docker run de la siguiente manera:
 ```bash
 docker run -d \
@@ -164,3 +166,24 @@ itzg/minecraft-server
 La diferencia entre sin mods y con mods es que si queremos crear un servidor sin mods no hará falta crear ninguna carpeta llamada mods, simplemente con crear el servidor a partir de docker run poniendo el nombre que prefieras y la versión que quieras ya vale. 
 
 En cambio con mods es mucho más diferente, ya que tiene que haber una carpeta que se **mods** donde irán todos los mods que vayas a utilizar. Puedes crear una carpeta que este aislada de ```bash /var/www/minecraft``` donde puedes guardar todos los mods que quieras tener para futuros servidores.
+
+**Importante**
+Si al crear servidor da fallos tendreis la opción de hacerlo por comandos, pero en el apartado de mods como nos ha dado error lo que vamos a hacer es enviaros la carpteta de mods al Oscar y que el pueda pasaroslo a vosotros. Tendreis que descargaros la carpeta de mods, una vez descargado esa carpeta lo que podeis hacer es dejar esta carpeta para guardar todos los mods y utilizarlo para futuros servidores, es decir, en la ruta: 
+```bash
+/var/www/minecraft
+```
+Creais una carpeta llamada **mods** y pasar los mods a esta carpeta con el siguiente comando:
+```bash
+cp mod1.jar /var/www/minecraft/mods/
+```
+Y por ultimo iniciar el servidor con el docker run de arriba que es el siguiente:
+```bash
+docker run -d \
+--name xxxxxxx \
+-p 25565:25565 \
+-e EULA=TRUE \
+-e TYPE=FORGE \
+-e VERSION=x.xx.x \
+-v /var/www/minecraft:/data \
+itzg/minecraft-server
+```
