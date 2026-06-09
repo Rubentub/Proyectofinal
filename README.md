@@ -54,4 +54,6 @@ Instala Java 17, que es el entorno necesario para poder ejecutar Minecraft, y de
 
 - **Último paso: Acceder a la página web**
 Una vez que el script haya terminado, abre el navegador y escribe la IP de tu máquina así:
-http://tu_ip
+```bash
+  http://Tu_IP
+  ```
