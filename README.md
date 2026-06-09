@@ -16,9 +16,15 @@ Este script lo que hace exactamente es automatizar completamente el despliegue d
 
 Primero de todo, brevemente os vamos a explicar como descargarse el script y como ejecutarlo:
 - Os pasaremos un correo con el script de despliegue, una vez os llegue al correo nuestro mensaje os lo tendreis que descargar.
-- Una vez os habeis descargardo este script, iremos al terminal y buscaremos el archivo en el buscador de archivos.
-  
-  ####Buscar con más facilidad el archivo en terminal**
-  ```bash
+- Una vez os habeis descargardo este script, iremos al terminal y buscaremos el archivo con el siguiente comando:
+    ```bash
   ls script.sh
+  ```
+- Despues de haber encontrado el script, habrá que darle permisos de ejecución con el siguiente comando:
+  ```bash
+  chmod +x script.sh
+  ```
+- Y por ultimo para poder ejecutarlo lo haremos de la siguiente manera:
+  ```bash
+  sudo ./script.sh
   ```
