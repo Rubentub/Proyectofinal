@@ -123,6 +123,42 @@ Una vez que el script haya terminado, abre el navegador y escribe la IP de tu m�
   http://localhost
   ```
 
-Si falla el tema de crear servidores a partir de la web, hemos encontrado una solución a este problema. Habrá que utilizar unos comandos depende si quieres añadir mods o no, que ahora explicaremos en un momento.
+Si falla el tema de crear servidores a partir de la web, hemos encontrado una solución a este problema. Habrá que utilizar una serie de comandos depende si quieres añadir mods o no, que ahora explicaremos en un momento.
 - **Primero vamos a explicar sin mods**
-Para
+Para crear un servidor a partir de Docker tendremos que añadir lo siguiente:
+```bash
+docker run -d \
+--name xxxxx \
+-p 25565:25565 \
+-e EULA=TRUE \
+-e TYPE=VANILLA \
+-e VERSION=x.xx.x \
+itzg/minecraft-server
+```
+Las x son los datos que tienes que poner tu a tu gusto, tanto el nombre del servidor que le quieras poner como la versión del servidor. Otra cosa muy importante es que si ya tienes un servidor creado con ```bash -p 25565:25565 ``` no podrás crear otro servidor con el mismo puerto, para crear otro servidor tendrás que cambiar el puerto de la izquierda de la siguiene manera.
+```bash
+-p 25566:25565
+-p 25567:25565
+```
+Por si te interesa saber todo lo que ha pasado en tu servidor desde terminal, a partir del comando ```bash docker logs ``` podrás ver toda la información de tu servidor.
+Exactamente te muestra mensajes de incio del servidor, te muestra los errores de este, te muestra algunas advtertencias de tu servidor, el progreso de descargar es decir, que versión tiene tu servidor, cuando se ha arrancado el Minecarft y por ultimo por si el servidor se crashea.
+
+Y por ultimo para borrar cualquier servidor se utizara ```bash docker rm -f nombredelservidor```.
+
+- **Con mods**
+Primero de todo tenemos que crear la carpeta mods, si no esta creada ya desde el script, una vez se ha creado meteremos los mods que meteremos en el servidor con el siguiente comando ```bash cp mod1.jar /var/www/minecraft/mods/````.
+
+Una vez hemos pasado los mods que queremos a la carpeta, tocará arrancar el servidor con docker run de la siguiente manera:
+```bash
+docker run -d \
+--name xxxxxxx \
+-p 25565:25565 \
+-e EULA=TRUE \
+-e TYPE=FORGE \
+-e VERSION=x.xx.x \
+-v /var/www/minecraft:/data \
+itzg/minecraft-server
+```
+La diferencia entre sin mods y con mods es que si queremos crear un servidor sin mods no hará falta crear ninguna carpeta llamada mods, simplemente con crear el servidor a partir de docker run poniendo el nombre que prefieras y la versión que quieras ya vale. 
+
+En cambio con mods es mucho más diferente, ya que tiene que haber una carpeta que se **mods** donde irán todos los mods que vayas a utilizar. Puedes crear una carpeta que este aislada de ```bash /var/www/minecraft``` donde puedes guardar todos los mods que quieras tener para futuros servidores.
