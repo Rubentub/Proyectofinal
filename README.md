@@ -161,6 +161,4 @@ itzg/minecraft-server
 ```
 La diferencia entre sin mods y con mods es que si queremos crear un servidor sin mods no hará falta crear ninguna carpeta llamada mods, simplemente con crear el servidor a partir de docker run poniendo el nombre que prefieras y la versión que quieras ya vale. 
 
-En cambio con mods es mucho más diferente, ya que tiene que haber una carpeta que se **mods** donde irán todos los mods que vayas a utilizar. Puedes crear una carpeta que este aislada de ```bash 
-/var/www/minecraft
-``` donde puedes guardar todos los mods que quieras tener para futuros servidores.
+En cambio con mods es mucho más diferente, ya que tiene que haber una carpeta que se **mods** donde irán todos los mods que vayas a utilizar. Puedes crear una carpeta que este aislada de ```bash /var/www/minecraft``` donde puedes guardar todos los mods que quieras tener para futuros servidores.
