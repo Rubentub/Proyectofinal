@@ -149,6 +149,9 @@ Y por ultimo para borrar cualquier servidor se utizara ```bash docker rm -f nomb
 
 - **Con mods**
 Primero de todo tenemos que crear la carpeta mods, si no esta creada ya desde el script, una vez se ha creado meteremos los mods que meteremos en el servidor con el siguiente comando:
+
+
+**Ejemplo**
 ```bash
 cp mod1.jar /var/www/minecraft/mods/
 ````
@@ -173,8 +176,6 @@ Si al crear servidor da fallos tendreis la opción de hacerlo por comandos, pero
 /var/www/minecraft
 ```
 Creais una carpeta llamada **mods** y pasar los mods a esta carpeta con el siguiente comando:
-
-**Ejemplo**
 ```bash
 cp mod1.jar /var/www/minecraft/mods/
 ```
