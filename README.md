@@ -43,17 +43,59 @@ Se instala la versión PHP8.2 junto a los módulos necesarios para que funcione 
 - **Paso 4: Instalar y configurar MySQL**
 Primero de todo se encarga de instalar MySQL, despues se encarga de crear la base de datos **gsbase** con su usuario **gsuser** y con la contraseña para poder acceder a la base de datos con el usuario (la contraseña se enviara por correo), y por ultimo le dara permisos de asginación.
 
-- **Paso 5: Instalar Docker**
+- **Paso 5: Descargar el proyecto de github**
+Primero de todo instala git para poder hacer un git clone y descargar el repositorio.
+
+- **Paso 5b: Importar la base de datos**
+Primero de todo, nosotros hemos metido en este script una copia de seguridad de nuestra base de datos para que se pueda importar correctamente.
+
+- **Paso 6: Crear la conexion.php y el config.php**
+El script genera automáticamente el config.php con los datos de la base de datos, el usuario y la contraseña (que esta evidentemente en un archivo diferente y no se va a subir en el repo) y crea la conexion.php con las siguientes lienas:
+```bash
+<?php
+$config = include("config.php");
+
+$conn = new mysqli(
+    $config["host"],
+    $config["user"],
+    $config["password"],
+    $config["db"]
+);
+
+if ($conn->connect_error) {
+    die(json_encode([
+        "status" => "error",
+        "msg" => "Error de conexión: " . $conn->connect_error
+    ]));
+}
+?>
+```
+
+- **Paso 6b: Corrige rutas**
+Cuando llega esta parte se crean automáticamente las carpetas
+```bash
+css/
+script/
+```
+Donde guardarán la información del style.css y del frontend script.js.
+Por utlimo crea unos enlaces simbólicos.
+```
+css/style.css
+script/script.js
+```
+
+
+- **Paso 8: Instalar Docker**
 Instala Docker Engine y Docker Compose, necesarios para crear y gestionar los contenedores de Minecraft. Cada servidor de Minecraft que un usuario crea desde la web se ejecuta en un contenedor Docker independiente usando la imagen itzg/minecraft-server, lo que permite que varios servidores funcionen al mismo tiempo en la misma máquina sin interferir entre ellos.
 
-- **Paso 6: Instalar Ansible**
+- **Paso 9: Instalar Ansible**
 Instala Ansible, la herramienta de automatización que gestiona el ciclo de vida de los servidores Minecraft. Cuando un usuario crea un servidor desde la web, Ansible ejecuta automáticamente un playbook que levanta el contenedor Docker correspondiente con la versión y configuración elegida. Esto permite que todo ocurra de forma automática sin que el usuario tenga que hacer nada técnico.
 
-- **Paso 7: Instalar TLauncher y Java 17**
+- **Paso 10: Instalar TLauncher y Java 17**
 Instala Java 17, que es el entorno necesario para poder ejecutar Minecraft, y descarga TLauncher, un launcher gratuito que permite jugar a Minecraft sin necesidad de cuenta de pago. Al terminar la instalación, el script crea automáticamente un acceso directo en el menú de aplicaciones del escritorio para que puedas abrirlo fácilmente cuando quieras conectarte a tu servidor.
 
 - **Último paso: Acceder a la página web**
 Una vez que el script haya terminado, abre el navegador y escribe la IP de tu máquina así:
 ```bash
-  http://Tu_IP
+  http://localhost
   ```
