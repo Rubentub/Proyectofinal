@@ -391,7 +391,7 @@ function volverInicio() {
    CARGAR SERVIDORES EXISTENTES
 ===================== */
 function cargarServidoresExistentes() {
-  fetch("http://192.168.15.152/orden.php", {
+  fetch("http://localhost/orden.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ accion: "listarServidores", usuario: usuario?.user })
@@ -453,7 +453,7 @@ function cargarServidor() {
    CARGAR MODS INSTALADOS
 ===================== */
 function cargarModsInstalados(nombre) {
-  fetch("http://192.168.15.152/orden.php", {
+  fetch("http://localhost/orden.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -508,7 +508,7 @@ function crearServidor() {
     return;
   }
 
-  fetch("http://192.168.15.152/orden.php", {
+  fetch("http://localhost/orden.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -547,7 +547,7 @@ function crearServidor() {
    PARAR SERVIDOR
 ===================== */
 function pararServidor() {
-  fetch("http://192.168.15.152/orden.php", {
+  fetch("http://localhost/orden.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -590,7 +590,7 @@ function pararServidor() {
    ARRANCAR SERVIDOR
 ===================== */
 function arrancarServidor(nombre) {
-  fetch("http://192.168.15.152/orden.php", {
+  fetch("http://localhost/orden.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -671,7 +671,7 @@ async function instalarMods() {
   if (statusEl) statusEl.textContent = '⏳ Instalando...';
 
   try {
-    const respuesta = await fetch("http://192.168.15.152/orden.php", {
+    const respuesta = await fetch("http://localhost/orden.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
