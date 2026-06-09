@@ -13,7 +13,8 @@ Este script lo que hace exactamente es automatizar completamente el despliegue d
 - **Importara las tablas de la base de datos**
 - **Configurara la conexión PHP-MySQL**
 - **Por ultimo configurara Nginx para poder acceder a la página principal**
-
+**Nota:** la base de datos se llama gsbase y las credenciales son: usuario gsuser y contraseña 1234Gs@.
+  
 Primero de todo, brevemente os vamos a explicar como descargarse el script y como ejecutarlo:
 - Os pasaremos un correo con el script de despliegue, una vez os llegue al correo nuestro mensaje os lo tendreis que descargar.
 - Una vez os habeis descargardo este script, iremos al terminal y buscaremos el archivo con el siguiente comando:
