@@ -169,12 +169,12 @@ En cambio con mods es mucho más diferente, ya que tiene que haber una carpeta q
 
 **Importante**
 Si al crear servidor da fallos tendreis la opción de hacerlo por comandos, pero en el apartado de mods como nos ha dado error lo que vamos a hacer es enviaros la carpteta de mods al Oscar y que el pueda pasaroslo a vosotros. Tendreis que descargaros la carpeta de mods, una vez descargado esa carpeta lo que podeis hacer es dejar esta carpeta para guardar todos los mods y utilizarlo para futuros servidores, es decir, en la ruta: 
-
-ejemplo
 ```bash
 /var/www/minecraft
 ```
 Creais una carpeta llamada **mods** y pasar los mods a esta carpeta con el siguiente comando:
+
+**Ejemplo**
 ```bash
 cp mod1.jar /var/www/minecraft/mods/
 ```
