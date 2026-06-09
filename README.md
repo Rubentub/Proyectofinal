@@ -99,10 +99,12 @@ root /var/www/minecraft;
 Php con el siguiente comando ```bash location ~ \.php$ ``` permitira ejecutar los scripts php mediante PHP-FPM.
 
 Por seguridad las contraseñas seran hasheadas para la privacidad del usuario con los siguientes comandos:
-Para registrar.php```bash
+Para registrar.php
+```bash
 $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 ```
-Para login.php```bash
+Para login.php
+```bash
 password_verify($passwordIntroducida, $hashGuardado)
 ```
 
