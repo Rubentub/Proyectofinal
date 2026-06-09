@@ -125,6 +125,7 @@ Una vez que el script haya terminado, abre el navegador y escribe la IP de tu m�
   ```
 
 Si falla el tema de crear servidores a partir de la web, hemos encontrado una solución a este problema. Habrá que utilizar una serie de comandos depende si quieres añadir mods o no, que ahora explicaremos en un momento.
+**Las versiones son: 1.21.11, 1.20.1, 1.19.1, 1.18.1**
 - **Primero vamos a explicar sin mods**
 Para crear un servidor a partir de Docker tendremos que añadir lo siguiente:
 ```bash
