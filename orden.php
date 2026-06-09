@@ -58,7 +58,7 @@ if ($accion === "crearServidor") {
     echo json_encode([
         "status"   => "ok",
         "msg"      => "Servidor creado correctamente",
-        "conexion" => "192.168.15.152:$puerto",
+        "conexion" => "localhost:$puerto",
         "puerto"   => $puerto
     ]);
     exit;
